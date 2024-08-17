@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1723811139 source:c:\users\gharboby\downloads\new folder (2)\q1\cash\cash.c
+	"Cash.h"
+
+1723734280 c:\users\gharboby\downloads\new folder (2)\q1\cash\platform.h
+
+1723734350 c:\users\gharboby\downloads\new folder (2)\q1\cash\cash.h
+	"Dynamic Stack.h"
+
+1723765935 source:c:\users\gharboby\downloads\new folder (2)\q1\cash\dynamic stack.c
+	"Dynamic Stack.h"
+
+1723773552 c:\users\gharboby\downloads\new folder (2)\q1\cash\dynamic stack.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PlatForm.h"
+
+1723808445 source:c:\users\gharboby\downloads\new folder (2)\q1\cash\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Cash.h"
+	"Dynamic Stack.h"
+
+1723811139 source:c:\users\gharboby\downloads\cashier system\cash.c
+	"Cash.h"
+
+1723734350 c:\users\gharboby\downloads\cashier system\cash.h
+	"Dynamic Stack.h"
+
+1723773552 c:\users\gharboby\downloads\cashier system\dynamic stack.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"PlatForm.h"
+
+1723734280 c:\users\gharboby\downloads\cashier system\platform.h
+
+1723765935 source:c:\users\gharboby\downloads\cashier system\dynamic stack.c
+	"Dynamic Stack.h"
+
+1723808445 source:c:\users\gharboby\downloads\cashier system\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Cash.h"
+	"Dynamic Stack.h"
+

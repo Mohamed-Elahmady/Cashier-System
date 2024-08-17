@@ -1,0 +1,145 @@
+//
+// Created by Gharboby on 7/24/2024.
+//
+#include "Cash.h"
+
+uint_8 *name_ptr[10000];
+uint_64 phone_ptr[10000];
+uint_64 customer_counter = 0;
+FILE *FPTR = NULL;
+
+Stack_Status coin_intialize(Stack **S1,uint_32 Temp,uint_32 S_Max) {
+    Stack_Status Stat = Stack_NOK;
+    uint_8 *arr_ptr[] = {"EGY","KSA","UAE","KWT"};
+
+
+
+    if (Temp == 0) {
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Name :  ");
+        scanf("%s",&name_ptr[customer_counter]);
+        fflush(stdin);
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Phhone Number : +20 ");
+        scanf("%i",&phone_ptr[customer_counter]);
+        fflush(stdin);
+
+        float_32 arr_EGY[] = {0.25,0.5,1,5,10,20,50,100,200};
+        S_Max = 9;
+        *S1 = Create(S_Max,&Stat);
+        for (int i = 0; i < S_Max; ++i) {
+            Stat = Push(*S1,&arr_EGY[i]);
+        }
+        Stat = Display(*S1,(arr_ptr[Temp]));
+    }
+    else if (Temp == 1) {
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Name :  ");
+        scanf("%s",&name_ptr[customer_counter]);
+        fflush(stdin);
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Phhone Number : +966 ");
+        scanf("%i",&phone_ptr[customer_counter]);
+        fflush(stdin);
+
+        float_32 arr_KSA[] = {0.01,0.05,0.1,0.25,0.5,1,2,5,10,20,50,100,200,500};
+        S_Max = 14;
+        *S1 = Create(S_Max,&Stat);
+        for (int i = 0; i < S_Max; ++i) {
+            Stat = Push(*S1,&arr_KSA[i]);
+        }
+        Stat = Display(*S1,(arr_ptr[Temp]));
+    }
+    else if (Temp == 2) {
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Name :  ");
+        scanf("%s",&name_ptr[customer_counter]);
+        fflush(stdin);
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Phhone Number : +971 ");
+        scanf("%i",&phone_ptr[customer_counter]);
+        fflush(stdin);
+
+        float_32 arr_AUE[] = {0.01,0.05,0.1,0.25,0.5,1,5,10,20,50,100,200,500,1000};
+        S_Max = 14;
+        *S1 = Create(S_Max,&Stat);
+        for (int i = 0; i < S_Max; ++i) {
+            Stat = Push(*S1,&arr_AUE[i]);
+        }
+        Stat = Display(*S1,(arr_ptr[Temp]));
+    }
+    else if (Temp == 3) {
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Name :  ");
+        scanf("%s",&name_ptr[customer_counter]);
+        fflush(stdin);
+        printf(" \t\t\t\t\t\t  \t     Enter the Customer Phhone Number : +965 ");
+        scanf("%i",&phone_ptr[customer_counter]);
+        fflush(stdin);
+
+
+        float_32 arr_KWT[] = {0.001,0.005,0.01,0.02,0.05,0.1,0.25,0.5,1,5,10,20};
+        S_Max = 12;
+        *S1 = Create(S_Max,&Stat);
+        for (int i = 0; i < S_Max; ++i) {
+            Stat = Push(*S1,&arr_KWT[i]);
+        }
+        Stat = Display(*S1,(arr_ptr[Temp]));
+    }
+}
+
+/*static void Data_Base(uint_8 **name_ptr[],uint_64 phone_ptr[],float_32 Res,float_32 p_price,float_32 c_price ){
+    FPTR = fopen("Data_Base.txt","w+");
+    fprintf(FPTR,"Mr/Mrs : %s\n Phone : +20 %d\n Buy a Product Costs %0.2f and paid %0.2f and his/her change = %0.2f\n",*name_ptr[customer_counter],phone_ptr[customer_counter],p_price,c_price,Res);
+}*/
+
+
+Stack_Status division_of_rest(Stack **S1,float_32 P_Price,float_32 C_Price,float_32 *Rest) {
+    Stack_Status Stat = Stack_NOK;
+    uint_32 int_part = 0;
+    float_32 float_part = 0;
+    if (NULL == S1) {
+        Stat = Stack_NULL;
+    }
+    else {
+        *Rest = C_Price - P_Price;
+        //Data_Base(&name_ptr[customer_counter],&phone_ptr[customer_counter],*Rest,P_Price,C_Price );
+        if (*Rest < 0) {
+            printf("\t\t\t\t\t\t||\t     The price is incomplete...!!\t\t\t       ||\n");
+        }
+        else if(*Rest == 0){
+            printf("\t\t\t\t\t\t||\t     The price is complete...!!\t\t\t               ||\n");
+            printf("\t\t\t\t\t\t||\t     See You Soon :)  \t\t\t                       ||\n");
+        }
+        else{
+                //printf("%f",*Rest);
+            float_part = (float)*Rest - (int)*Rest;
+            int_part = (int)*Rest;
+            printf("\t\t\t\t\t\t||\t     real_part  = %7hd\t\t\t               ||\n\t\t\t\t\t\t||\t     float_part = %7.3f\t\t\t               ||\n",int_part,float_part);
+        }
+        Stat = Stack_OK;
+    }
+    return Stat;
+}
+
+
+Stack_Status The_Rest(Stack *S1,float_32 *Rest){
+    Stack_Status Stat = Stack_NOK;
+    uint_32 Counter = 0;
+    float_32 RES = *Rest;
+    if(NULL == S1){
+        Stat = Stack_NULL;
+    }
+    else{
+        for(int i = 0; i <S1->Max;i++){
+            while(RES - S1->arr[S1->Ptr-i] >= 0)
+            {
+                Counter++;
+                RES = RES - (S1->arr[S1->Ptr-i]);
+                //printf("\t\t\t\t\t\t||\t     ---> %3.5f <---  \t\t       ||\n",S1->arr[S1->Ptr-i]);
+                if(RES < S1->arr[S1->Ptr-i]){
+                    printf("\t\t\t\t\t\t||\t     ---> give %hd of %2.3f coin <---\t\t\t       ||\n",Counter,S1->arr[S1->Ptr-i]);
+                    Counter = 0;
+                }
+
+            }
+        }
+        printf("\t\t\t\t\t\t-------------------------------------------------------------------------\n");
+
+    }
+
+}
+
